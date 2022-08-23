@@ -4,6 +4,16 @@ const server = require('http').Server(app)
 const nunjucks = require('nunjucks')
 const { collect: ctlCollector, router } = require('./register-routes')
 
+const MongoClient = require('mongodb').MongoClient
+
+MongoClient.connect('mongodb://root:password@localhost:27017')
+  .then(() => {
+    console.log('db connection success')
+  })
+  .catch((err) => {
+    throw err
+  })
+
 nunjucks.configure('views', {
   autoescape: true,
   express: app,
