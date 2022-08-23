@@ -34,6 +34,9 @@ io.on('connection', (socket) => {
     socket.on('ready', () => {
       socket.broadcast.to(roomId).emit('user-connected', userId)
     })
+    socket.on('message', (msg) => {
+      io.to(roomId).emit('createMessage', msg, userId)
+    })
   })
 })
 

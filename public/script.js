@@ -54,3 +54,30 @@ const addVideoStream = (video, stream) => {
     videoGrid.append(video)
   })
 }
+
+let text = document.querySelector('#chat_message')
+let send = document.getElementById('send')
+let messages = document.querySelector('.messages')
+
+send.addEventListener('click', () => {
+  if (text.value.length !== 0) {
+    socket.emit('message', text.value)
+    text.value = ''
+  }
+})
+
+text.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && text.value.length !== 0) {
+    socket.emit('message', text.value)
+    text.value = ''
+  }
+})
+
+socket.on('createMessage', (message, userName) => {
+  messages.innerHTML =
+    messages.innerHTML +
+    `<div class="message">
+        <b><i class="far fa-user-circle"></i> <span> ${userName}</span> </b>
+        <span>${message}</span>
+    </div>`
+})
