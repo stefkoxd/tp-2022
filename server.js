@@ -11,7 +11,11 @@ app.set('view engine', 'njk')
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-  res.status(200).render('room')
+  res.status(200).render('home')
+})
+
+app.get('/:room', (req, res) => {
+  res.status(200).render('room', { roomId: req.params.room })
 })
 
 server.listen(8080)
