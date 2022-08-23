@@ -55,6 +55,7 @@ The `index.js` file has the root base path.
 - Socket.io: https://socket.io/docs/v4/
 - PeerJS: https://peerjs.com/docs/
 - Peer server: https://github.com/peers/peerjs-server#readme
+- MongoDB: https://www.mongodb.com/docs/
 - Nunjucks templating engine: https://mozilla.github.io/nunjucks/templating.html
 
 # TODOs:
