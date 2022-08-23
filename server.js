@@ -37,7 +37,7 @@ io.on('connection', (socket) => {
   })
 })
 
-app.use(express.static('public'))
+app.use('/static', express.static('public'))
 app.use('', router)
 
 server.listen(8080)
