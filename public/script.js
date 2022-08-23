@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
-// eslint-disable-next-line no-unused-vars
-let myVideoStream
-
 const socket = io('/')
+const videoGrid = document.getElementById('video-grid')
+const myVideo = document.createElement('video')
+myVideo.muted = true
 
 const peer = new Peer(undefined, {
   path: '/peerjs',
@@ -10,10 +10,8 @@ const peer = new Peer(undefined, {
   port: '9000',
 })
 
-const videoGrid = document.getElementById('video-grid')
-const myVideo = document.createElement('video')
-myVideo.muted = true
-
+// eslint-disable-next-line no-unused-vars
+let myVideoStream
 navigator.mediaDevices
   .getUserMedia({
     audio: true,
@@ -32,9 +30,9 @@ navigator.mediaDevices
     })
 
     socket.on('user-connected', (userId) => {
-      console.log('connected')
       connectToNewUser(userId, stream)
     })
+    socket.emit('ready')
   })
 
 const connectToNewUser = (userId, stream) => {
@@ -45,6 +43,10 @@ const connectToNewUser = (userId, stream) => {
   })
 }
 
+peer.on('open', (id) => {
+  socket.emit('join-room', ROOM_ID, id, `user-${id}`)
+})
+
 const addVideoStream = (video, stream) => {
   video.srcObject = stream
   video.addEventListener('loadedmetadata', () => {
@@ -52,11 +54,3 @@ const addVideoStream = (video, stream) => {
     videoGrid.append(video)
   })
 }
-
-// TODO: fix random user
-const user = `user-${Math.floor(Math.random() * 100)}`
-
-peer.on('open', (id) => {
-  console.log('peer open')
-  socket.emit('join-room', ROOM_ID, id, user)
-})
