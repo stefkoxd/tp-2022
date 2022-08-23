@@ -43,17 +43,16 @@ module.exports = [home]
 # TODOs:
 
 - Home page:
-  - Create session (for teachers)
-  - ? View active sessions (for studends, only for courses they listen) ?
+  - Create session (for teachers) []
+  - View active sessions (for studends, only for courses they listen) []
 - Classroom:
-  - Proper user disconnect
-  - Mute/Disable camera
-  - Mute/Disable cameras all (teachers only)
-  - Send invite link
-  - Share screen
-  - Working chat
+  - Proper user disconnect []
+  - Mute/Disable camera []
+  - Mute/Disable cameras all (teachers only) []
+  - Send invite link []
+  - Share screen []
+  - Working chat [X]
 - General features:
-  - Authorization and authentication (teacher-student roles)
-  - Login page
-  - Database integration
-  - ...
+  - Authorization and authentication (teacher-student roles) []
+  - Login page []
+  - Database integration []
