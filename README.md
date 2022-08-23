@@ -18,6 +18,28 @@ Lint:
 npm run lint
 ```
 
+# Controller registration API
+
+Controllers reside in the controllers directory. Each controller exports an array of objects. These objects must contain the following properties:
+
+- httpMethod: the http method for the controller action
+- path: the path to the controllers action
+- function: the action itself
+
+Example:
+
+```javascript
+const home = {
+  httpMethod: 'get',
+  path: '/',
+  function: (req, res) => {
+    res.status(200).render('home')
+  },
+}
+
+module.exports = [home]
+```
+
 # TODOs:
 
 - Home page:

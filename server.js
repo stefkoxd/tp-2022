@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const server = require('http').Server(app)
 const nunjucks = require('nunjucks')
+const { collect: ctlCollector, router } = require('./register-routes')
 
 nunjucks.configure('views', {
   autoescape: true,
@@ -9,6 +10,7 @@ nunjucks.configure('views', {
 })
 app.set('view engine', 'njk')
 
+ctlCollector()
 // Socket.io allows us to do real-time communication
 const io = require('socket.io')(server, {
   cors: {
@@ -36,13 +38,6 @@ io.on('connection', (socket) => {
 })
 
 app.use(express.static('public'))
-
-app.get('/', (req, res) => {
-  res.status(200).render('home')
-})
-
-app.get('/:room', (req, res) => {
-  res.status(200).render('room', { roomId: req.params.room })
-})
+app.use('', router)
 
 server.listen(8080)
