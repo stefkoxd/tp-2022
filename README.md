@@ -16,6 +16,8 @@ Lint:
 
 ```bash
 npm run lint
+# or
+npm run lint:fix
 ```
 
 # Controller registration API
@@ -60,17 +62,16 @@ The `index.js` file has the root base path.
 
 # TODOs:
 
-- Home page:
-  - [ ] Create session (for teachers)
-  - [ ] View active sessions (for studends, only for courses they listen)
+- Dashboard page:
+  - [ ] View, create, update, delete meetings (professors only)
 - Classroom:
+  - [x] Send invite link
+  - [x] Working chat
   - [ ] Proper user disconnect
   - [ ] Mute/Disable camera
-  - [ ] Mute/Disable cameras all (teachers only)
-  - [x] Send invite link
+  - [ ] Mute/Disable cameras all (professors only)
   - [ ] Share screen
-  - [x] Working chat
 - General features:
-  - [ ] Authorization and authentication (teacher-student roles)
+  - [ ] Authorization and authentication (professor-student roles)
   - [ ] Login page
   - [ ] Database integration
