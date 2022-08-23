@@ -15,7 +15,7 @@ const collect = () => {
     ctlFns.forEach((ctlFn) => {
       router[ctlFn.httpMethod](
         basePath === 'index' ? ctlFn.path : `/${basePath}${ctlFn.path}`,
-        ctlFn.function
+        ctlFn.action
       )
     })
   })

@@ -1,7 +1,7 @@
 const home = {
   httpMethod: 'get',
   path: '/',
-  function: (req, res) => {
+  action: (req, res) => {
     res.status(200).render('home')
   },
 }

@@ -1,7 +1,7 @@
 const joinRoom = {
   httpMethod: 'get',
-  path: '/:course/:room',
-  function: (req, res) => {
+  path: '/:meeting/:room',
+  action: (req, res) => {
     res.status(200).render('room', { roomId: req.params.room })
   },
 }
