@@ -58,6 +58,11 @@ const addVideoStream = (video, stream) => {
 let text = document.querySelector('#chat_message')
 let send = document.getElementById('send')
 let messages = document.querySelector('.messages')
+const inviteButton = document.querySelector('#inviteButton')
+
+inviteButton.addEventListener('click', () => {
+  prompt('Copy this link and send it to students', window.location.href)
+})
 
 send.addEventListener('click', () => {
   if (text.value.length !== 0) {

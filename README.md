@@ -49,9 +49,9 @@ module.exports = [home]
   - [ ] Proper user disconnect
   - [ ] Mute/Disable camera
   - [ ] Mute/Disable cameras all (teachers only)
-  - [ ] Send invite link
+  - [x] Send invite link
   - [ ] Share screen
-  - [X] Working chat
+  - [x] Working chat
 - General features:
   - [ ] Authorization and authentication (teacher-student roles)
   - [ ] Login page
