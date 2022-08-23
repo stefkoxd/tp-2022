@@ -48,6 +48,15 @@ To access this about page you would have to navigate to `/home/about` as the nam
 
 The `index.js` file has the root base path.
 
+# Documentation:
+
+- Node.js : https://nodejs.org/en/docs/
+- Express: https://expressjs.com/
+- Socket.io: https://socket.io/docs/v4/
+- PeerJS: https://peerjs.com/docs/
+- Peer server: https://github.com/peers/peerjs-server#readme
+- Nunjucks templating engine: https://mozilla.github.io/nunjucks/templating.html
+
 # TODOs:
 
 - Home page:
