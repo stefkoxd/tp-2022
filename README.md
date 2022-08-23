@@ -26,19 +26,27 @@ Controllers reside in the controllers directory. Each controller exports an arra
 - path: the path to the controllers action
 - function: the action itself
 
+The name of the controller file is important as it's the base of every object's path defined in it.
+
 Example:
+
+`controllers/home.js`
 
 ```javascript
 const home = {
   httpMethod: 'get',
-  path: '/',
+  path: '/about',
   function: (req, res) => {
-    res.status(200).render('home')
+    res.status(200).render('about')
   },
 }
 
 module.exports = [home]
 ```
+
+To access this about page you would have to navigate to `/home/about` as the name of the file is `home.js` and as stated above the name is used as a base path.
+
+The `index.js` file has the root base path.
 
 # TODOs:
 

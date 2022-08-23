@@ -1,4 +1,5 @@
 const fs = require('fs')
+const path = require('path')
 const express = require('express')
 const router = express.Router()
 
@@ -10,8 +11,12 @@ const collect = () => {
   const ctls = fs.readdirSync('./controllers')
   ctls.forEach((ctl) => {
     const ctlFns = require(`./controllers/${ctl}`)
+    const basePath = path.parse(`./controllers/${ctl}`).name
     ctlFns.forEach((ctlFn) => {
-      router[ctlFn.httpMethod](ctlFn.path, ctlFn.function)
+      router[ctlFn.httpMethod](
+        basePath === 'index' ? ctlFn.path : `/${basePath}${ctlFn.path}`,
+        ctlFn.function
+      )
     })
   })
 }
