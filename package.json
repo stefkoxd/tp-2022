@@ -1,0 +1,26 @@
+{
+  "name": "tp-2022",
+  "version": "0.0.0",
+  "description": "A virtual classroom system built using Node.js, socket.io and WebRTC",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "lint": "npx eslint . --ext .js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "express-pino-logger": "^7.0.0",
+    "nunjucks": "^3.2.3",
+    "peer": "^0.6.1",
+    "socket.io": "^4.5.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.22.0",
+    "eslint-config-prettier": "^8.5.0",
+    "nodemon": "^2.0.19",
+    "prettier": "^2.7.1"
+  }
+}
