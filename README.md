@@ -19,7 +19,7 @@ Once you have docker and docker-compose installed run:
 docker-compose up -d
 ```
 
-This will spin up 2 services, namely the mongo database and the mongo-express service which is a GUI for our mongodb. To access mongo-express navigate to `http://localhost:8081/`
+This will spin up 2 services, namely the mongo database and the mongo-express service which is a GUI for our mongodb. To access mongo-express navigate to `http://localhost:8081`
 
 ### Installing dependencies:
 
