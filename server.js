@@ -76,13 +76,13 @@ const peerServer = PeerServer({
 })
 
 io.on('connection', socket => {
-  socket.on('join-room', (roomId, userId) => {
+  socket.on('join-room', (roomId, userId, username) => {
     socket.join(roomId)
     socket.on('ready', () => {
       socket.broadcast.to(roomId).emit('user-connected', userId)
     })
     socket.on('message', msg => {
-      io.to(roomId).emit('createMessage', msg, userId)
+      io.to(roomId).emit('createMessage', msg, username)
     })
   })
 })
