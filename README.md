@@ -58,6 +58,7 @@ The `index.js` file has the root base path.
 - PeerJS: https://peerjs.com/docs/
 - Peer server: https://github.com/peers/peerjs-server#readme
 - MongoDB: https://www.mongodb.com/docs/
+- Mongoose: https://mongoosejs.com/docs/
 - Nunjucks templating engine: https://mozilla.github.io/nunjucks/templating.html
 
 # TODOs:

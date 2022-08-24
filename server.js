@@ -3,16 +3,24 @@ const app = express()
 const server = require('http').Server(app)
 const nunjucks = require('nunjucks')
 const { collect: ctlCollector, router } = require('./register-routes')
+const mongoose = require('mongoose')
 
-const MongoClient = require('mongodb').MongoClient
-
-MongoClient.connect('mongodb://root:password@localhost:27017')
-  .then(() => {
-    console.log('db connection success')
+mongoose
+  .connect('mongodb://localhost:27017/tpvc-db?authSource=admin&w=1', {
+    auth: {
+      authSource: 'admin',
+    },
+    user: 'root',
+    pass: 'password',
   })
-  .catch((err) => {
-    throw err
-  })
+  .then(
+    () => {
+      console.log('connected to db')
+    },
+    err => {
+      console.error(err)
+    }
+  )
 
 nunjucks.configure('views', {
   autoescape: true,
@@ -38,13 +46,13 @@ const peerServer = PeerServer({
   path: '/peerjs',
 })
 
-io.on('connection', (socket) => {
+io.on('connection', socket => {
   socket.on('join-room', (roomId, userId) => {
     socket.join(roomId)
     socket.on('ready', () => {
       socket.broadcast.to(roomId).emit('user-connected', userId)
     })
-    socket.on('message', (msg) => {
+    socket.on('message', msg => {
       io.to(roomId).emit('createMessage', msg, userId)
     })
   })
