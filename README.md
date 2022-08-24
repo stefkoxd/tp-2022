@@ -88,7 +88,11 @@ The `index.js` file has the root base path.
 # TODOs:
 
 - Dashboard page:
-  - [ ] View, create, update, delete meetings (professors only)
+  - [x] View meetings
+  - [x] Create meetings
+  - [x] Join a meeting
+  - [ ] Update meetings
+  - [ ] Delete meetings
 - Classroom:
   - [x] Send invite link
   - [x] Working chat
@@ -97,7 +101,8 @@ The `index.js` file has the root base path.
   - [ ] Mute/Disable cameras all (professors only)
   - [ ] Share screen
 - General features:
-  - [x] Authorization
+  - [x] Authentication
   - [x] Login page
   - [x] Database integration
-  - [ ] Authentication
+  - [x] Join meetings with proper link
+  - [ ] Authorization
