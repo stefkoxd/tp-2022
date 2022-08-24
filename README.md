@@ -9,7 +9,7 @@
 
 ### Create .env file
 
-Create a .env file in the root of the project, it's git ignored. See .env.example for required env variables.
+Create a `.env` file in the root of the project, it's git ignored. See `.env.example` for required env variables.
 
 ### Docker configuration
 
