@@ -27,6 +27,7 @@ Controllers reside in the controllers directory. Each controller exports an arra
 - httpMethod: the http method for the controller action
 - path: the path to the controllers action
 - action: the action itself
+- authed: whether the controller's action is authenticated (default: false)
 
 The name of the controller file is important as it's the base of every object's path defined in it.
 
@@ -41,12 +42,13 @@ const about = {
   action: (req, res) => {
     res.status(200).render('about')
   },
+  authed: true,
 }
 
 module.exports = [about]
 ```
 
-To access this about page you would have to navigate to `/home/about` as the name of the file is `home.js` and as stated above the name is used as a base path.
+To access this about page you would have to navigate to `/home/about` and to also be logged in (authenticated) as the name of the file is `home.js` and as stated above the name is used as a base path.
 
 The `index.js` file has the root base path.
 

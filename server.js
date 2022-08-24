@@ -5,6 +5,13 @@ const nunjucks = require('nunjucks')
 const bodyParser = require('body-parser')
 const { collect: ctlCollector, router } = require('./register-routes')
 const mongoose = require('mongoose')
+const passport = require('passport')
+const flash = require('express-flash')
+const session = require('express-session')
+require('dotenv').config()
+
+const initPassport = require('./passport-config')
+initPassport(passport)
 
 mongoose
   .connect('mongodb://localhost:27017/tpvc-db?authSource=admin&w=1', {
@@ -34,6 +41,17 @@ app.use(
   })
 )
 app.use(bodyParser.json())
+
+app.use(flash())
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+  })
+)
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.set('view engine', 'njk')
 

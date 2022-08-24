@@ -1,12 +1,15 @@
 const bcrypt = require('bcrypt')
+const passport = require('passport')
 const Professor = require('../models/professor')
 
 const home = {
   httpMethod: 'get',
   path: '/',
-  action: (req, res) => {
-    res.status(200).render('home')
+  action: async (req, res) => {
+    const user = await req.user.exec()
+    res.status(200).render('home', { user })
   },
+  authed: true,
 }
 
 const register = {
@@ -26,10 +29,10 @@ const register = {
         password: hashedPassword,
         meetings: [],
       })
-      res.sendStatus(201)
+      res.redirect('/login')
     } catch (e) {
       console.error(e)
-      res.status(500).send()
+      res.redirect('/register')
     }
   },
 }
@@ -37,21 +40,27 @@ const register = {
 const login = {
   httpMethod: 'post',
   path: '/login',
-  action: async (req, res) => {
-    const professor = await Professor.findOne({ email: req.body.email })
-    if (!professor) {
-      res.sendStatus(400).send('Cannot find user')
-    }
-    try {
-      if (await bcrypt.compare(req.body.password, professor.password)) {
-        res.send('Success')
-      } else {
-        res.status(401).send('Unauthorized')
-      }
-    } catch (e) {
-      res.status(500).send()
-    }
+  action: passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login',
+    failureFlash: true,
+  }),
+}
+
+const loginPage = {
+  httpMethod: 'get',
+  path: '/login',
+  action: (req, res) => {
+    res.render('login')
   },
 }
 
-module.exports = [home, login, register]
+const registerPage = {
+  httpMethod: 'get',
+  path: '/register',
+  action: (req, res) => {
+    res.render('register')
+  },
+}
+
+module.exports = [home, login, register, loginPage, registerPage]
