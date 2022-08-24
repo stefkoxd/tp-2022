@@ -4,6 +4,7 @@ const videoGrid = document.getElementById('video-grid')
 const myVideo = document.createElement('video')
 myVideo.muted = true
 
+const user = prompt('Enter your name')
 const peer = new Peer(undefined, {
   path: '/peerjs',
   host: 'localhost',
@@ -44,7 +45,7 @@ const connectToNewUser = (userId, stream) => {
 }
 
 peer.on('open', id => {
-  socket.emit('join-room', ROOM_ID, id, `user-${id}`)
+  socket.emit('join-room', ROOM_ID, id, user)
 })
 
 const addVideoStream = (video, stream) => {
