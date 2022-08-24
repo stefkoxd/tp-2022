@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon server.js",
     "lint": "npx eslint . --ext .js",
-    "lint:fix": "npx eslint . --ext .js --fix"
+    "lint:fix": "npx eslint --fix --ext .js .",
+    "prettier": "prettier --write ."
   },
   "author": "",
   "license": "ISC",

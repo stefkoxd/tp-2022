@@ -17,19 +17,19 @@ navigator.mediaDevices
     audio: true,
     video: true,
   })
-  .then((stream) => {
+  .then(stream => {
     myVideoStream = stream
     addVideoStream(myVideo, stream)
 
-    peer.on('call', (call) => {
+    peer.on('call', call => {
       call.answer(stream)
       const video = document.createElement('video')
-      call.on('stream', (userVideoStream) => {
+      call.on('stream', userVideoStream => {
         addVideoStream(video, userVideoStream)
       })
     })
 
-    socket.on('user-connected', (userId) => {
+    socket.on('user-connected', userId => {
       connectToNewUser(userId, stream)
     })
     socket.emit('ready')
@@ -38,12 +38,12 @@ navigator.mediaDevices
 const connectToNewUser = (userId, stream) => {
   const call = peer.call(userId, stream)
   const video = document.createElement('video')
-  call.on('stream', (userVideoStream) => {
+  call.on('stream', userVideoStream => {
     addVideoStream(video, userVideoStream)
   })
 }
 
-peer.on('open', (id) => {
+peer.on('open', id => {
   socket.emit('join-room', ROOM_ID, id, `user-${id}`)
 })
 
@@ -71,7 +71,7 @@ send.addEventListener('click', () => {
   }
 })
 
-text.addEventListener('keydown', (e) => {
+text.addEventListener('keydown', e => {
   if (e.key === 'Enter' && text.value.length !== 0) {
     socket.emit('message', text.value)
     text.value = ''
