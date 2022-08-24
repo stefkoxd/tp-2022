@@ -3,10 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    {# TODO: Course name should be dynamic #}
-    <title>Course</title>
-
+    <title>{{ meetingName }}</title>
     <link rel="stylesheet" href="/static/room.css" type="text/css"/>
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
@@ -18,8 +15,7 @@
   <body>
     <div class="header">
       <div class="logo">
-        {# TODO: Course name should be dynamic #}
-        <h3>Course</h2>
+        <h3>{{ meetingName }}</h2>
       </div>
     </div>  
     <div class="main">  
