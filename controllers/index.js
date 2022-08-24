@@ -2,6 +2,8 @@ const bcrypt = require('bcrypt')
 const passport = require('passport')
 const Professor = require('../models/professor')
 
+// TODO: Remove auth from home page
+// This includes fixing the home.njk template too
 const home = {
   httpMethod: 'get',
   path: '/',
@@ -41,7 +43,7 @@ const login = {
   httpMethod: 'post',
   path: '/login',
   action: passport.authenticate('local', {
-    successRedirect: '/',
+    successRedirect: '/dashboard',
     failureRedirect: '/login',
     failureFlash: true,
   }),
