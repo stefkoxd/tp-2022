@@ -7,7 +7,7 @@ const professorSchema = new Schema({
   surname: String,
   email: String,
   password: String,
-  meetings: [String],
+  meetings: [mongoose.ObjectId],
 })
 
 const Professor = model('Professor', professorSchema)
