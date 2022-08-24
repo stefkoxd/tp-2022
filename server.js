@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const server = require('http').Server(app)
 const nunjucks = require('nunjucks')
+const bodyParser = require('body-parser')
 const { collect: ctlCollector, router } = require('./register-routes')
 const mongoose = require('mongoose')
 
@@ -26,6 +27,14 @@ nunjucks.configure('views', {
   autoescape: true,
   express: app,
 })
+
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+)
+app.use(bodyParser.json())
+
 app.set('view engine', 'njk')
 
 ctlCollector()
