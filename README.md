@@ -4,6 +4,7 @@
 
 - Docker
 - Docker compose
+- Node v16: https://nodejs.org/en/download/
 
 ## Configuration
 
