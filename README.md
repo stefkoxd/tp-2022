@@ -1,18 +1,39 @@
 # Getting started
 
-Installing dependencies:
+## Prerequisites
+
+- Docker
+- Docker compose
+
+## Configuration
+
+### Create .env file
+
+Create a .env file in the root of the project, it's git ignored. See .env.example for required env variables.
+
+### Docker configuration
+
+Once you have docker and docker-compose installed run:
+
+```bash
+docker-compose up -d
+```
+
+This will spin up 2 services, namely the mongo database and the mongo-express service which is a GUI for our mongodb. To access mongo-express navigate to http://localhost:8081/
+
+### Installing dependencies:
 
 ```bash
 npm install
 ```
 
-Running the server:
+### Running the server:
 
 ```bash
 npm run start
 ```
 
-Lint:
+### Lint:
 
 ```bash
 npm run lint
@@ -75,6 +96,7 @@ The `index.js` file has the root base path.
   - [ ] Mute/Disable cameras all (professors only)
   - [ ] Share screen
 - General features:
-  - [ ] Authorization and authentication (professor-student roles)
-  - [ ] Login page
-  - [ ] Database integration
+  - [x] Authorization
+  - [x] Login page
+  - [x] Database integration
+  - [ ] Authentication
