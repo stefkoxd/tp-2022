@@ -5,5 +5,8 @@
   </head>
   <body>
     <h1>Welcome {{ user.name }}</h1>
+    <form action="/logout?_method=DELETE" method="post">
+      <button type="submit">Log out</button>
+    </form>
   </body>
 </html>

@@ -8,6 +8,7 @@ const mongoose = require('mongoose')
 const passport = require('passport')
 const flash = require('express-flash')
 const session = require('express-session')
+const methodOverride = require('method-override')
 require('dotenv').config()
 
 const initPassport = require('./passport-config')
@@ -52,6 +53,7 @@ app.use(
 )
 app.use(passport.initialize())
 app.use(passport.session())
+app.use(methodOverride('_method'))
 
 app.set('view engine', 'njk')
 

@@ -63,4 +63,17 @@ const registerPage = {
   },
 }
 
-module.exports = [home, login, register, loginPage, registerPage]
+const logout = {
+  httpMethod: 'delete',
+  path: '/logout',
+  action: (req, res, next) => {
+    req.logOut(err => {
+      if (err) {
+        return next(err)
+      }
+      res.redirect('/login')
+    })
+  },
+}
+
+module.exports = [home, login, register, loginPage, registerPage, logout]
