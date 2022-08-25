@@ -26,7 +26,8 @@ mongoose
   })
   .then(
     () => {
-      console.log('connected to db')
+      // TODO: Add proper logging
+      // console.log('connected to db')
     },
     err => {
       console.error(err)
