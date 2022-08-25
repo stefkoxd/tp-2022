@@ -6,13 +6,11 @@ const create = {
   action: async (req, res) => {
     const user = await req.user.exec()
 
-    const meeting = await Meeting.create({
+    await Meeting.create({
       name: req.body.name,
       date: req.body.date,
+      professor: user.id,
     })
-
-    user.meetings.push(meeting.id)
-    user.save()
 
     res.redirect('/dashboard')
   },

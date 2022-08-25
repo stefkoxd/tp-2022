@@ -5,6 +5,7 @@ const { Schema, model } = mongoose
 const meetingSchema = Schema({
   name: String,
   date: Date,
+  professor: mongoose.ObjectId,
 })
 
 const Meeting = model('Meeting', meetingSchema)

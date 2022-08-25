@@ -6,12 +6,8 @@ const dashboard = {
   action: async (req, res) => {
     const user = await req.user.exec()
 
-    const userMeetings = user.meetings.map(meeting => meeting._id)
-
     const meetings = await Meeting.find({
-      _id: {
-        $in: userMeetings,
-      },
+      professor: user._id,
     }).exec()
 
     res.status(200).render('dashboard', { user, meetings })
