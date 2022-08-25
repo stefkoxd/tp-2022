@@ -14,7 +14,7 @@ Create a `.env` file in the root of the project, it's git ignored. See `.env.exa
 
 ### Docker configuration
 
-Once you have docker and docker-compose installed run:
+Once you have `docker` and `docker-compose` installed `cd` into this project via terminal and run:
 
 ```bash
 docker-compose up -d
