@@ -99,7 +99,7 @@ The `index.js` file has the root base path.
   - [ ] Proper user disconnect
   - [ ] Mute/Disable camera
   - [ ] Mute/Disable cameras all (professors only)
-  - [ ] Share screen - https://developer.mozilla.org/en-US/docs/Web/API/Screen_Capture_API/Using_Screen_Capture
+  - [ ] [Share screen](https://developer.mozilla.org/en-US/docs/Web/API/Screen_Capture_API/Using_Screen_Capture)
 - General features:
   - [x] Authentication
   - [x] Login page
