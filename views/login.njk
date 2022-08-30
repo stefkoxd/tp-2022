@@ -1,18 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Login</title>
-  </head>
-  <body>
-    <h1>Login page</h1>
-    <form method="post" action="/login">
-      <label for="email">Enter your email:</label>
-      <input type="text" id="email" name="email">
+{% extends "./layout/base.njk" %}
 
-      <label for="password">Enter your password:</label>
-      <input type="password" id="password" name="password">
+{% block head %}
+  <title>Login</title>
+{% endblock %}
 
-      <input type="submit" value="Submit"> 
+{% block default %}
+  <main class="login-page">
+    <form  class="login-form" method="post" action="/login">
+      <h1 class="login-title" >Login</h1>
+      <div class="login-form-group">
+        <input class="login-form-group-input" type="text" id="email" name="email" placeholder="Email">
+        <label class="login-form-group-label" for="email">
+            <span class="material-symbols-rounded">
+              mail
+            </span>
+        </label>
+      </div>
+
+      <div class="login-form-group">
+        <input class="login-form-group-input" type="password" id="password" name="password" placeholder="Password">
+        <label class="login-form-group-label" for="password">
+            <span class="material-symbols-rounded">
+              lock
+            </span>
+        </label>
+      </div>
+
+      <button class="button" type="submit">
+        Log in
+      </button> 
     </form>
-  </body>
-</html>
+  </main>
+{% endblock %}

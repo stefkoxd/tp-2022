@@ -4,19 +4,16 @@
   padding: 0;
 }
 
-.createBtn {
-  float: right !important;
-}
 
-.topnav {
-  background-color: #161d29;
-  overflow: hidden;
+.top-nav {
+  background-color: var(--background-color);
+  display: flex;
+  justify-content: space-between;
 }
 
 /* Style the links inside the navigation bar */
-.topnav a {
-  float: left;
-  color: #f2f2f2;
+.top-nav a {
+  color: var(--text-color);
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -24,13 +21,13 @@
 }
 
 /* Change the color of links on hover */
-.topnav a:hover {
+.top-nav a:hover {
   background-color: #ddd;
   color: black;
 }
 
 /* Add a color to the active/current link */
-.topnav a.active {
-  background-color: #2f80ec;
-  color: white;
+.top-nav a.active {
+  background-color: var(--accent-color);
+  color: var(--white);
 }

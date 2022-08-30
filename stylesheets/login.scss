@@ -1,0 +1,119 @@
+@use 'utils' as u;
+
+.login-page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  user-select: none;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(-135deg, #c850c0, #4158d0);
+}
+
+.login-title {
+  display: block;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 0 solid #8c8c8c;
+  border-radius: var(--corner-roundness);
+  box-shadow: var(--shadow);
+  padding-top: 4.5rem;
+  padding-bottom: 4.5rem;
+  padding: 4.5rem 2rem;
+  margin: auto 1.5rem;
+
+  box-sizing: border-box;
+  background-color: var(--background-color);
+  gap: 2rem;
+
+  &-group {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+
+    &-label {
+      position: absolute;
+      color: var(--text-color);
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      left: 0.75rem;
+    }
+
+    &-input {
+      font-size: 1rem;
+      color: var(--text-color);
+      border: 1px var(--background-color-lighter) solid;
+      border-radius: var(--corner-roundness);
+      padding-left: 3rem;
+      height: 3.125rem;
+      transition: 0.25s;
+      background-color: var(--background-color-lighter);
+
+      &:focus {
+        transition: 0.25s;
+        outline: 1px var(--accent-color) solid;
+        box-shadow: 0 0 0.5rem 0.2rem var(--text-color);
+        & + label {
+          transition: 0.25s;
+          transform: translateX(0.25rem);
+          color: var(--accent-color);
+        }
+      }
+    }
+  }
+}
+
+.button {
+  padding: 0.5rem 3rem;
+  pointer-events: auto;
+  cursor: pointer;
+  background-color: var(--accent-color);
+  border: 0 var(--background-color-lighter) solid;
+  color: var(--white);
+  font-weight: bold;
+  font-size: 0.9rem;
+  box-shadow: var(--shadow);
+  border-radius: var(--corner-roundness);
+
+  &:disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: var(--disabled-opacity);
+  }
+
+  &:hover {
+    background: var(--accent-color-lighter);
+  }
+
+  &:focus {
+    outline: 1px var(--text-color-lighter) solid;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+      rgba(0, 0, 0, 0.3) 0px 8px 16px -8px,
+      0 0 0.5rem 0.1rem var(--text-color-lighter);
+  }
+
+  &:active {
+    background: var(--accent-color-darker);
+    outline: none;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+      0 0 0.3rem 0.02rem var(--text-color-lighter);
+  }
+}
+
+@include u.media(md) {
+  .login-form {
+    width: fit-content;
+    @include u.px(4rem);
+  }
+}
