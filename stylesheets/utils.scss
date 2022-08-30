@@ -1,0 +1,19 @@
+@use 'sass:map';
+@use 'variables' as v;
+
+
+@mixin media($size) {
+  @media (min-width: map.get(v.$screen, $size)) {
+    @content;
+  }
+}
+
+@mixin px($size) {
+  padding-left: $size;
+  padding-right: $size;
+}
+
+@mixin py($size) {
+  padding-top: $size;
+  padding-bottom: $size;
+}

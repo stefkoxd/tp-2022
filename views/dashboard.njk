@@ -1,30 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Dashboard</title>
-  </head>
-  <body>
-    <link rel="stylesheet" href="/static/styles.css" type="text/css"/>
-    <div class="topnav">
-        <a class="active" href="/dashboard">My meetings</a>
-        <a class="createBtn" href="/dashboard/create">Create a meeting</a>
-    </div>
-    <h1>Hello {{ user.name }}</h1>
-    <form action="/logout?_method=DELETE" method="post">
-      <button type="submit">Log out</button>
-    </form>
+{% extends "./layout/base.njk" %}
 
-    {% if meetings %}
-      <h1>Meetings:</h1>
-      <ul>
-        {% for meeting in meetings %}
-          <li>
-            <div>Name: {{ meeting.name }}</div>
-            <div>Date: {{ meeting.date }} </div>
-            <a href='/room/{{ meeting.id }}'>Join</a>
-          </li>
-        {%- endfor %}
-      </ul>
-    {% endif %}
-  </body>
-</html>
+{% block head %}
+  <title>Dashboard</title>
+{% endblock %}
+
+{% block default %}
+  <div class="top-nav">
+      <a class="active" href="/dashboard">My meetings</a>
+      <a class="createBtn" href="/dashboard/create">Create a meeting</a>
+  </div>
+  <h1>Hello {{ user.name }}</h1>
+  <form action="/logout?_method=DELETE" method="post">
+    <button type="submit">Log out</button>
+  </form>
+
+  {% if meetings %}
+    <h1>Meetings:</h1>
+    <ul>
+      {% for meeting in meetings %}
+        <li>
+          <div>Name: {{ meeting.name }}</div>
+          <div>Date: {{ meeting.date }} </div>
+          <a href='/room/{{ meeting.id }}'>Join</a>
+        </li>
+      {%- endfor %}
+    </ul>
+  {% endif %}
+{% endblock %}

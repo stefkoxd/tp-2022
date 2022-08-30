@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-  </head>
-  <body>
-    <h1>Welcome {{ user.name }}</h1>
+{% extends "./layout/base.njk" %}
+
+{% block head %}
+  <title>Home</title>
+{% endblock %}
+
+{% block default %}
+  <h1>Welcome {{ user.name }}</h1>
     <form action="/logout?_method=DELETE" method="post">
-      <button type="submit">Log out</button>
-    </form>
-  </body>
-</html>
+    <button type="submit">Log out</button>
+  </form>
+{% endblock %}

@@ -1,9 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Register</title>
-  </head>
-  <body>
+{% extends "./layout/base.njk" %}
+
+{% block head %}
+  <title>Register</title>
+{% endblock %}
+
+{% block default %}
+  <main class="register-page">
     <h1>Register page</h1>
     <form method="post" action="/register">
       <label for="name">Enter your name:</label>
@@ -20,5 +22,6 @@
 
       <input type="submit" value="Submit"> 
     </form>
-  </body>
-</html>
+  </main>
+{% endblock %}
+

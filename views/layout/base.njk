@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/styles.css" type="text/css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,500,1,0" />
+    <script>
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.body.setAttribute('data-theme', 'dark')
+      } else {
+        document.body.removeAttribute("data-theme")      
+      }
+    </script>
+    {% block head %}{% endblock %}
+  </head>
+  <body>
+    {% block default %}{% endblock %}
+  </body>
+</html>

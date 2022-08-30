@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Login</title>
-  </head>
-  <body>
-    <h1>Login page</h1>
+{% extends "./layout/base.njk" %}
+
+{% block head %}
+  <title>Meeting</title>
+{% endblock %}
+
+{% block default %}
+  <main class="meeting-page">
+    <h1>Create Meeting</h1>
     <form method="post" action="/meeting/create">
       <label for="name">Meeting name:</label>
       <input type="text" id="name" name="name">
@@ -14,5 +16,6 @@
 
       <input type="submit" value="Submit"> 
     </form>
-  </body>
-</html>
+  </main>
+{% endblock %}
+
