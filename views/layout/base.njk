@@ -5,16 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/static/styles.css" type="text/css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,500,1,0" />
-    <script>
-      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.body.setAttribute('data-theme', 'dark')
-      } else {
-        document.body.removeAttribute("data-theme")      
-      }
-    </script>
+    
     {% block head %}{% endblock %}
   </head>
   <body>
     {% block default %}{% endblock %}
   </body>
+    {% block late %}{% endblock %}
+
+    <script>
+      function computeTheme() {
+        switch (localStorage.getItem('theme')) {
+          case 'dark': {
+            return document.body.setAttribute('data-theme', 'dark')
+          }
+          case 'light': {
+            return document.body.setAttribute('data-theme', 'light')
+          }
+          default: {
+            return document.body.removeAttribute("data-theme")      
+          }
+        }
+      }
+
+      computeTheme()
+    </script>
 </html>

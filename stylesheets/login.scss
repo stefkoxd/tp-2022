@@ -24,12 +24,11 @@
   align-items: center;
   border: 0 solid #8c8c8c;
   border-radius: var(--corner-roundness);
-  box-shadow: var(--shadow);
+  box-shadow: var(--elevation-5);
   padding-top: 4.5rem;
   padding-bottom: 4.5rem;
   padding: 4.5rem 2rem;
   margin: auto 1.5rem;
-
   box-sizing: border-box;
   background-color: var(--background-color);
   gap: 2rem;

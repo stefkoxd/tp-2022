@@ -1,33 +1,239 @@
-/* Add a black background color to the top navigation */
-* {
-  margin: 0;
-  padding: 0;
+@use './utils.scss' as u;
+
+.dashboard-page {
+  height: 100%;
+  width: 100%;
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+
+  &-content {
+    flex-grow: 1;
+    max-height: calc(98vh - 3.5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+    // height: 400px;
+
+    box-sizing: border-box;
+    &-calendar {
+      background-color: var(--background-color-1);
+      box-shadow: var(--elevation-1);
+      border: 0 solid black;
+      border-radius: var(--corner-roundness);
+      overflow: hidden;
+      box-sizing: border-box;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      &-nav {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        background-color: var(--background-color-2);
+        box-shadow: var(--elevation-2);
+        padding: 0.5rem 1rem;
+        box-sizing: border-box;
+        z-index: 1;
+
+        &-date_controls {
+          display: flex;
+          width: 100%;
+          justify-content: space-between;
+          align-items: center;
+          font-weight: bold;
+          user-select: none;
+          color: var(--accent-color);
+        }
+
+        &-weekday {
+          display: flex;
+          gap: 1rem;
+          width: 100%;
+          box-sizing: border-box;
+          justify-content: space-around;
+
+          & > * {
+            width: calc(1 / 8 * 100%);
+            overflow: hidden;
+            user-select: none;
+          }
+
+          & > *:not(.clock) {
+            font-size: 0rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          & > .clock {
+            display: flex;
+            justify-content: center;
+          }
+
+          & > *:not(.clock)::first-letter {
+            font-size: 1rem;
+            color: var(--accent-color);
+            font-weight: bold;
+            box-sizing: border-box;
+            padding-left: calc(50% - 0.5rem);
+            padding-right: calc(50% - 0.5rem);
+          }
+        }
+      }
+      &-main {
+        width: 100%;
+        box-sizing: border-box;
+        flex-grow: 1;
+        overflow: auto;
+        display: grid;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        grid-template-columns: repeat(8, 1fr);
+        gap: 0.08rem;
+
+        & > * {
+          &:not(:last-child) {
+            border-right: var(--text-color-lighter) solid 1px;
+          }
+
+          &:first-child > * {
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            padding-right: 1rem;
+            padding-left: 1rem;
+          }
+
+          & > * {
+            --padding-x-row: 0.25rem;
+            --padding-y-row: 0.5rem;
+
+            position: relative;
+            height: 8rem;
+            box-sizing: border-box;
+            padding-top: var(--padding-y-row);
+            padding-bottom: var(--padding-y-row);
+            padding-right: var(--padding-x-row);
+            padding-left: var(--padding-x-row);
+
+            &:first-child {
+              padding-top: 1rem;
+            }
+
+            &:not(:last-child) {
+              border-bottom: var(--text-color-lighter) solid 1px;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
+@include u.media(md) {
+  .dashboard-page {
+    &-content {
+      &-calendar {
+        width: fit-content;
+        min-width: 100%;
+        &-nav {
+          &-weekday {
+            & > *:not(.clock) {
+              font-size: 1rem;
+              overflow: auto;
+              display: flex;
+              justify-content: center;
+            }
 
-.top-nav {
-  background-color: var(--background-color);
+            & > *:not(.clock)::first-letter {
+              overflow: auto;
+              padding: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.empty-button {
+  background-color: transparent;
+  color: var(--text-color);
+  border: none;
+  pointer-events: auto;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--accent-color-lighter);
+  }
+
+  &:active {
+    color: var(--accent-color-darker);
+  }
+}
+
+.meeting-chip {
+  position: absolute;
   display: flex;
   justify-content: space-between;
-}
-
-/* Style the links inside the navigation bar */
-.top-nav a {
-  color: var(--text-color);
-  text-align: center;
-  padding: 14px 16px;
+  background-color: var(--accent-color);
+  border: 0 solid transparent;
+  border-radius: var(--corner-roundness);
+  width: calc(100% - 2 * var(--padding-x-row));
+  box-sizing: border-box;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   text-decoration: none;
-  font-size: 17px;
+  color: var(--white);
+  cursor: pointer;
+
+  a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  &:hover {
+    background-color: var(--accent-color-lighter);
+  }
+
+  &:active {
+    background-color: var(--accent-color-darker);
+  }
 }
 
-/* Change the color of links on hover */
-.top-nav a:hover {
-  background-color: #ddd;
-  color: black;
+@include u.media(md) {
+  .meeting-chip {
+    pointer-events: auto;
+    cursor: pointer;
+  }
 }
 
-/* Add a color to the active/current link */
-.top-nav a.active {
+.create-meeting {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  border: 0px solid transparent;
+  border-radius: var(--corner-roundness);
   background-color: var(--accent-color);
   color: var(--white);
+  box-sizing: border-box;
+  padding: 0.25rem 1rem;
+  &:hover {
+    background-color: var(--accent-color-lighter);
+  }
+  &:active {
+    background-color: var(--accent-color-darker);
+  }
 }
+
+
