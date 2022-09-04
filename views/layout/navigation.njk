@@ -1,0 +1,78 @@
+{% macro navigation(username, name) %}
+  <nav class="navigation">
+    <div class="navigation-controls-left">
+      <a class="navigation-content-name" href="/dashboard">{{ name }}</a>
+    </div>
+    <div class="navigation-controls-right">  
+      {{ caller() }}
+      <div class="navigation-dropdown">
+        <input id="settings-dropdown" type="checkbox"/> 
+        <label for="settings-dropdown" class="navigation-dropdown-button">
+          <span class="material-symbols-rounded">settings</span>
+        </label>
+        <div class="navigation-dropdown-content">
+          <div class="dropdown-field theme-settings">
+            <button id="dark-theme">
+              <span class="material-symbols-rounded">dark_mode</span>
+            </button>
+            <button id="light-theme">
+              <span class="material-symbols-rounded">light_mode</span>
+            </button>
+            <button id="system-theme">
+              <span class="material-symbols-rounded">settings_brightness</span>
+            </button>
+          </div>
+          {% if username %}
+            <div class="dropdown-field logout-button">
+                <form action="/logout?_method=DELETE" method="post">
+                    <button type="submit">Log out</button>
+                </form>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </nav>
+  <script>
+    function computeTheme() {
+      switch (localStorage.getItem('theme')) {
+        case 'dark': {
+          return document.getElementById('dark-theme').classList.add('active')
+        }
+        case 'light': {
+          return document.getElementById('light-theme').classList.add('active')
+        }
+        default: {
+          return document.getElementById('system-theme').classList.add('active')
+        }
+      }
+    }
+
+    document.getElementById('dark-theme').addEventListener('click', () => {
+      localStorage.setItem('theme', 'dark')
+      document.body.setAttribute('data-theme', 'dark')
+      document.getElementById('dark-theme').classList.add('active')
+      document.getElementById('light-theme').classList.remove('active')
+      document.getElementById('system-theme').classList.remove('active')
+    })
+
+    document.getElementById('light-theme').addEventListener('click', () => {
+      localStorage.setItem('theme', 'light')
+      document.body.setAttribute('data-theme', 'light')
+      document.getElementById('dark-theme').classList.remove('active')
+      document.getElementById('light-theme').classList.add('active')
+      document.getElementById('system-theme').classList.remove('active')
+    })
+
+    document.getElementById('system-theme').addEventListener('click', () => {
+      localStorage.removeItem('theme')
+      document.getElementById('dark-theme').classList.remove('active')
+      document.getElementById('light-theme').classList.remove('active')
+      document.getElementById('system-theme').classList.add('active')
+      document.body.removeAttribute("data-theme")
+    })
+
+    computeTheme()
+  </script>
+{% endmacro %}
+

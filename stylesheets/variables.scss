@@ -8,14 +8,43 @@ $screen: (
 
 @mixin general-properties {
   --font-family: 'Poppins', sans-serif;
-  --disabled-opacity: 0.75; 
+  --disabled-opacity: 0.75;
   --white: #ffffff;
   --corner-roundness: 30px;
   --shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  --elevation-0: none;
+  --elevation-1: 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.12), 0px 1px 3px rgba(0, 0, 0, 0.2);
+  --elevation-2: 0px 2px 2px rgba(0, 0, 0, 0.14),
+    0px 3px 1px rgba(0, 0, 0, 0.12), 0px 1px 5px rgba(0, 0, 0, 0.2);
+  --elevation-3: 0px 3px 4px rgba(0, 0, 0, 0.14),
+    0px 3px 3px rgba(0, 0, 0, 0.12), 0px 1px 8px rgba(0, 0, 0, 0.2);
+  --elevation-4: 0px 4px 5px rgba(0, 0, 0, 0.14),
+    0px 1px 10px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.2);
+  --elevation-5: 0px 6px 10px rgba(0, 0, 0, 0.14),
+    0px 1px 18px rgba(0, 0, 0, 0.12), 0px 3px 5px rgba(0, 0, 0, 0.2);
+  --elevation-6: 0px 8px 10px rgba(0, 0, 0, 0.14),
+    0px 3px 14px rgba(0, 0, 0, 0.12), 0px 5px 5px rgba(0, 0, 0, 0.2);
+  --elevation-7: 0px 12px 17px rgba(0, 0, 0, 0.14),
+    0px 5px 22px rgba(0, 0, 0, 0.12), 0px 7px 8px rgba(0, 0, 0, 0.2);
+  --elevation-8: 0px 16px 24px rgba(0, 0, 0, 0.14),
+    0px 6px 30px rgba(0, 0, 0, 0.12), 0px 8px 10px rgba(0, 0, 0, 0.2);
+  --elevation-9: 0px 24px 38px rgba(0, 0, 0, 0.14),
+    0px 9px 46px rgba(0, 0, 0, 0.12), 0px 11px 15px rgba(0, 0, 0, 0.2);
 }
 
 @mixin dark-properties {
+  --background-color-0: #121212;
+  --background-color-1: #1e1e1e;
+  --background-color-2: #232323;
+  --background-color-3: #252525;
+  --background-color-4: #272727;
+  --background-color-5: #2c2c2c;
+  --background-color-6: #2e2e2e;
+  --background-color-7: #333333;
+  --background-color-8: #363636;
+  --background-color-9: #383838;
   --background-color: #1e2122;
   --background-color-lighter: #303336;
   --text-color: #ffffff;
@@ -24,9 +53,24 @@ $screen: (
   --accent-color: #2f80ec;
   --accent-color-darker: #146adc;
   --accent-color-lighter: #4e93ef;
+  --elevation-0: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  --elevation-1: 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.12), 0px 1px 3px rgba(0, 0, 0, 0.2);
+  --elevation-2: 0px 2px 2px rgba(0, 0, 0, 0.14),
+    0px 3px 1px rgba(0, 0, 0, 0.12), 0px 1px 5px rgba(0, 0, 0, 0.2);
 }
 
 @mixin light-properties {
+  --background-color-0: #e6e6e6;
+  --background-color-1: #fefefe;
+  --background-color-2: #ffffff;
+  --background-color-3: #ffffff;
+  --background-color-4: #ffffff;
+  --background-color-5: #ffffff;
+  --background-color-6: #ffffff;
+  --background-color-7: #ffffff;
+  --background-color-8: #ffffff;
+  --background-color-9: #ffffff;
   --background-color: #ffffff;
   --background-color-lighter: #e6e6e6;
   --text-color: #1e2122;
