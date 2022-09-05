@@ -98,6 +98,7 @@ The `index.js` file has the root base path.
   - [x] Working chat
   - [ ] Proper user disconnect
   - [ ] Mute/Disable camera
+  - [ ] Save chat
   - [ ] Mute/Disable cameras all (professors only)
   - [ ] [Share screen](https://developer.mozilla.org/en-US/docs/Web/API/Screen_Capture_API/Using_Screen_Capture)
 - General features:
