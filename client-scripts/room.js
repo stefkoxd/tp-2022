@@ -119,3 +119,8 @@ socket.on('createMessage', (message, userName) => {
         <span>${message}</span>
     </div>`
 })
+
+// TODO: user disconnect
+// socket.on('user-disconnected', userId => {
+//   // remove video
+// })
