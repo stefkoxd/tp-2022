@@ -116,10 +116,14 @@
             position: relative;
             height: 8rem;
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
             padding-top: var(--padding-y-row);
             padding-bottom: var(--padding-y-row);
             padding-right: var(--padding-x-row);
             padding-left: var(--padding-x-row);
+            overflow: auto;
 
             &:first-child {
               padding-top: 1rem;
@@ -178,42 +182,156 @@
 }
 
 .meeting-chip {
-  position: absolute;
+  position: relative;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background-color: var(--accent-color);
   border: 0 solid transparent;
   border-radius: var(--corner-roundness);
   width: calc(100% - 2 * var(--padding-x-row));
   box-sizing: border-box;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  box-shadow: var(--elevation-3);
   text-decoration: none;
+  font-size: 1rem;
   color: var(--white);
+  pointer-events: auto;
   cursor: pointer;
+  user-select: none;
+  padding: 0.25rem 0.5rem;
+
+  & > * {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  
+  &:not(:focus) {
+    .actions {
+      visibility: hidden;
+      width: 0;
+    }
+  }
+
+  &:focus {
+    min-width: max(8rem, 100%);
+    border-top-left-radius: calc(var(--corner-roundness)/2);
+    border-top-right-radius: calc(var(--corner-roundness ) / 2);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    width: auto;
+    z-index: 4;
+  }
 
   a {
-    color: var(--white);
     text-decoration: none;
-    font-weight: bold;
   }
 
-  &:hover {
-    background-color: var(--accent-color-lighter);
-  }
+  .actions {
+    position: absolute;
+    bottom: -99%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.25rem 0.5rem;
+    width: 100%;
+    background-color: var(--accent-color);
+    border: 0 solid transparent;
+    border-bottom-left-radius: calc(var(--corner-roundness)/2);
+    border-bottom-right-radius: calc(var(--corner-roundness ) / 2); 
+    left: 0;
 
-  &:active {
-    background-color: var(--accent-color-darker);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    .icon {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: var(--white);
+
+      box-sizing: border-box;
+      padding: 0.15rem;
+
+      color: var(--accent-color);
+      font-weight: bold;
+
+      border: 0 solid transparent;
+      border-radius: var(--corner-roundness);
+
+      &:hover {
+        color: var(--accent-color-lighter);
+
+      }
+
+      &:active {
+        color: var(--accent-color-darker);
+      }
+    }
+
+    form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: fit-content;
+      button {
+        height: fit-content;
+        background-color: transparent;
+        border: none;
+        // color: var(--white);
+        cursor: pointer;
+      }
+    }
   }
 }
 
-@include u.media(md) {
+@include u.media(lg) {
   .meeting-chip {
     pointer-events: auto;
-    cursor: pointer;
+    cursor: default;
+
+    & > * {
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  
+    
+    &:not(:focus) {
+      .actions {
+        visibility: visible;
+        width: 100%;
+      }
+    }
+  
+    &:focus {
+      min-width: calc(100% - 2 * var(--padding-x-row));
+      border-radius: var(--corner-roundness);
+      width: 50%;
+    }
+  
+    a {
+      text-decoration: none;
+    }
+  
+    .actions {
+      overflow: unset;
+      position: initial;
+      bottom: auto;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0.25rem 0.5rem;
+      width: 100%;
+      background-color: var(--accent-color);
+      border: 0 solid transparent;
+      border-bottom-left-radius: calc(var(--corner-roundness)/2);
+      border-bottom-right-radius: calc(var(--corner-roundness ) / 2); 
+      left: 0;
+    }
   }
 }
 
@@ -235,5 +353,3 @@
     background-color: var(--accent-color-darker);
   }
 }
-
-

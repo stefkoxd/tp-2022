@@ -1,0 +1,47 @@
+{% extends "./layout/base.njk" %}
+
+{% block head %}
+  <title>Meeting</title>
+{% endblock %}
+
+{% block default %}
+  <main class="meeting-page">
+    <h1>Meeting</h1>
+    <form method="post"
+      {% if meeting %}
+        action="/meeting/save/{{ meeting.id }}"
+      {% else %}
+        action="/meeting/save"
+      {% endif %}
+    >
+      <label for="name">Meeting name:</label>
+      <input type="text" id="name" name="name"
+        {% if meeting %}
+          value="{{ meeting.name }}"
+        {% endif %}
+      >
+
+      <label for="date">Meeting date:</label>
+      <input type="datetime-local" id="date" name="date"
+        
+       
+
+        {% if meeting %}
+          value="{{ meeting.date }}"
+        {% endif %}
+      >
+
+      <script>
+        const date = Date.parse('{{meeting.date}}')
+        const offset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
+        const localDate = (new Date(date - offset)).toISOString().slice(0, -1);
+    
+        document.getElementById('date').setAttribute('value', localDate) 
+        console.log(localDate)
+      </script>
+
+      <input type="submit" value="Submit"> 
+    </form>
+  </main>
+{% endblock %}
+
