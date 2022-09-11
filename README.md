@@ -96,9 +96,9 @@ The `index.js` file has the root base path.
 - Classroom:
   - [x] Send invite link
   - [x] Working chat
-  - [ ] Proper user disconnect
   - [X] Mute/Disable camera
   - [X] Save chat
+  - [ ] Proper user disconnect
   - [ ] Mute/Disable cameras all (professors only)
   - [ ] [Share screen](https://developer.mozilla.org/en-US/docs/Web/API/Screen_Capture_API/Using_Screen_Capture)
 - General features:
