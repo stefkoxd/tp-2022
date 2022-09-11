@@ -9,6 +9,8 @@ const passport = require('passport')
 const flash = require('express-flash')
 const session = require('express-session')
 const methodOverride = require('method-override')
+const Message = require('./models/message')
+
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
@@ -84,8 +86,17 @@ io.on('connection', socket => {
     socket.on('ready', () => {
       socket.broadcast.to(roomId).emit('user-connected', userId)
     })
-    socket.on('message', msg => {
+    socket.on('message', async msg => {
+      await Message.create({
+        userId,
+        username,
+        roomId,
+        message: msg,
+      })
       io.to(roomId).emit('createMessage', msg, username)
+    })
+    socket.on('disconnect', () => {
+      socket.broadcast.emit('user-disconnected', userId)
     })
   })
 })
