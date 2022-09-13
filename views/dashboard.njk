@@ -174,7 +174,7 @@
         .reduce(
           (prev, [key, value]) => ({
             ...prev,
-            [key]: value,
+            [key]: [...(prev[key] ?? []), value],
           }),
           {}
         )
@@ -201,12 +201,37 @@
     }
 
     function cleanUpMeetingElements() {
-      Object.values(meetingElements).forEach(meeting => meeting.remove())
+      Object.values(meetingElements)
+        .reduce((prev, curr) => [...prev, ...curr], [])
+        .forEach(meeting => meeting.remove())
     }
 
     function handleMeetingClick(e, meeting) {
-      //prettier-ignore
-      const confirmText = `This will take you to the meeting room of '${meeting.name}'\n scheduled at '${formatDateTime(meeting.date)}',\n are you sure you wan't to proceed?`
+      const meetinglink = `${window.location.origin}/room/${meeting.id}`
+      const confirmText = `\
+      This will take you to the meeting room of '${meeting.name}'
+      scheduled at '${formatDateTime(meeting.date)}',
+      are you sure you wan't to proceed?
+
+
+      The Meeting link is: 
+      ${meetinglink}`
+        .split('\n')
+        .map(s => s.trim())
+        .join('\n')
+      const isConfirmed = confirm(confirmText)
+
+      if (!isConfirmed) {
+        e.preventDefault()
+      }
+    }
+
+    function handleDeleteClick(e, meeting) {
+      const meetinglink = `${window.location.origin}/room/${meeting.id}`
+      const confirmText = `Are you sure you wan't to delete '${meeting.name}'?`
+        .split('\n')
+        .map(s => s.trim())
+        .join('\n')
       const isConfirmed = confirm(confirmText)
 
       if (!isConfirmed) {
@@ -384,34 +409,75 @@
     * @param
     */
     function createLink(id, href, element) {
-      const link = document.createElement('a')
+      const link = createElement(id, 'a')
       link.href = href
-      link.id = id
       link.appendChild(element)
       return link
     }
 
+    function createIcon(iconName, classNames = []) {
+      const iconElement = createElement(iconName, 'span')
+      const iconText = document.createTextNode(iconName)
+      iconElement.appendChild(iconText)
+      iconElement.classList.add('material-symbols-rounded', 'icon', ...classNames)
+
+      return iconElement
+    }
+
     function createMeetingElement(meeting) {
       const link = `/room/${meeting.id}`
-      const meetingElement = createElement(meeting.id, 'a')
+      const meetingElement = createElement(meeting.id, 'button')
       const meetingText = document.createTextNode(meeting.name)
-      const linkText = document.createTextNode('Join')
-      const meetingLink = createLink(`link-${meeting.id}`, link, linkText)
+      const meetingTextElem = createElement(meeting.id, 'span')
+      meetingTextElem.append(meetingText)
 
-      meetingElement.href = link
+      const actions = createElement(`actions-${meeting.id}`, 'div')
+      actions.classList.add('actions')
+
+      const linkIcon = createIcon('link')
+      const meetingLink = createLink(`link-${meeting.id}`, link, linkIcon)
+
+      const deleteLink = `/meeting/delete/${meeting.id}`
+      const deleteIcon = createIcon('delete')
+      const deleteSubmitButton = createElement(
+        `delete-button-${meeting.id}`,
+        'button'
+      )
+      const deleteForm = createElement(`delete-${meeting.id}`, 'form')
+
+      deleteForm.method = 'post'
+      deleteForm.action = `${deleteLink}?_method=DELETE`
+
+      deleteSubmitButton.append(deleteIcon)
+      deleteForm.append(deleteSubmitButton)
+
+      const meetingEditLink = `/dashboard/update/${meeting.id}`
+      const meetingEdit = createIcon('edit')
+      const meetingEditElement = createLink(
+        `edit-${meeting.id}`,
+        meetingEditLink,
+        meetingEdit
+      )
+
+      meetingLink.addEventListener('click', e => handleMeetingClick(e, meeting))
+      deleteSubmitButton.addEventListener('click', e =>
+        handleDeleteClick(e, meeting)
+      )
+
+      actions.append(meetingLink, meetingEditElement, deleteForm)
+
       meetingElement.classList.add('meeting-chip')
-      meetingElement.append(meetingText, ' ', meetingLink)
-
-      meetingElement.addEventListener('click', e => handleMeetingClick(e, meeting))
+      meetingElement.append(meetingTextElem, ' ', actions)
 
       return meetingElement
     }
 
     function updateMeetings(meetingElements) {
-      Object.entries(meetingElements).forEach(([id, meeting]) =>
-        document.getElementById(id)?.appendChild(meeting)
+      Object.entries(meetingElements).forEach(([id, meetings]) =>
+        document.getElementById(id)?.append(...meetings)
       )
     }
+
 
   </script>
 {% endblock %}
