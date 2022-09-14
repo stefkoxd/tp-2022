@@ -91,8 +91,8 @@ The `index.js` file has the root base path.
   - [x] View meetings
   - [x] Create meetings
   - [x] Join a meeting
-  - [ ] Update meetings
-  - [ ] Delete meetings
+  - [x] Update meetings
+  - [x] Delete meetings
 - Classroom:
   - [x] Send invite link
   - [x] Working chat
