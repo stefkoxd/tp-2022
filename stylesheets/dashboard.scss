@@ -18,6 +18,7 @@
     // height: 400px;
 
     box-sizing: border-box;
+
     &-calendar {
       background-color: var(--background-color-1);
       box-shadow: var(--elevation-1);
@@ -29,6 +30,7 @@
       display: flex;
       flex-direction: column;
       height: 100%;
+
       &-nav {
         width: 100%;
         display: flex;
@@ -85,6 +87,7 @@
           }
         }
       }
+
       &-main {
         width: 100%;
         box-sizing: border-box;
@@ -123,7 +126,8 @@
             padding-bottom: var(--padding-y-row);
             padding-right: var(--padding-x-row);
             padding-left: var(--padding-x-row);
-            overflow: auto;
+            overflow-y: scroll;
+
 
             &:first-child {
               padding-top: 1rem;
@@ -145,6 +149,7 @@
       &-calendar {
         width: fit-content;
         min-width: 100%;
+
         &-nav {
           &-weekday {
             & > *:not(.clock) {
@@ -207,7 +212,7 @@
     text-overflow: ellipsis;
   }
 
-  
+
   &:not(:focus) {
     .actions {
       visibility: hidden;
@@ -217,8 +222,8 @@
 
   &:focus {
     min-width: max(8rem, 100%);
-    border-top-left-radius: calc(var(--corner-roundness)/2);
-    border-top-right-radius: calc(var(--corner-roundness ) / 2);
+    border-top-left-radius: calc(var(--corner-roundness) / 2);
+    border-top-right-radius: calc(var(--corner-roundness) / 2);
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     width: auto;
@@ -238,14 +243,15 @@
     width: 100%;
     background-color: var(--accent-color);
     border: 0 solid transparent;
-    border-bottom-left-radius: calc(var(--corner-roundness)/2);
-    border-bottom-right-radius: calc(var(--corner-roundness ) / 2); 
+    border-bottom-left-radius: calc(var(--corner-roundness) / 2);
+    border-bottom-right-radius: calc(var(--corner-roundness) / 2);
     left: 0;
 
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
+
     .icon {
       height: 100%;
       display: flex;
@@ -277,6 +283,7 @@
       justify-content: center;
       align-items: center;
       height: fit-content;
+
       button {
         height: fit-content;
         background-color: transparent;
@@ -299,25 +306,25 @@
       white-space: nowrap;
       text-overflow: ellipsis;
     }
-  
-    
+
+
     &:not(:focus) {
       .actions {
         visibility: visible;
         width: 100%;
       }
     }
-  
+
     &:focus {
       min-width: calc(100% - 2 * var(--padding-x-row));
       border-radius: var(--corner-roundness);
       width: 50%;
     }
-  
+
     a {
       text-decoration: none;
     }
-  
+
     .actions {
       overflow: unset;
       position: initial;
@@ -328,8 +335,8 @@
       width: 100%;
       background-color: var(--accent-color);
       border: 0 solid transparent;
-      border-bottom-left-radius: calc(var(--corner-roundness)/2);
-      border-bottom-right-radius: calc(var(--corner-roundness ) / 2); 
+      border-bottom-left-radius: calc(var(--corner-roundness) / 2);
+      border-bottom-right-radius: calc(var(--corner-roundness) / 2);
       left: 0;
     }
   }
@@ -346,9 +353,11 @@
   color: var(--white);
   box-sizing: border-box;
   padding: 0.25rem 1rem;
+
   &:hover {
     background-color: var(--accent-color-lighter);
   }
+
   &:active {
     background-color: var(--accent-color-darker);
   }

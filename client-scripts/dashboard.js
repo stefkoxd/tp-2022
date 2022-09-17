@@ -6,7 +6,7 @@ const monthNames = [
   'May',
   'June',
   'July',
-  'August',
+  'August', 200
   'September',
   'October',
   'November',
@@ -142,7 +142,7 @@ function handleMeetingClick(e, meeting) {
   are you sure you wan't to proceed?
 
 
-  The Meeting link is: 
+  The Meeting link is:
   ${meetinglink}`
     .split('\n')
     .map(s => s.trim())

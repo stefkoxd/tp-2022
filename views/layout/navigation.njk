@@ -3,10 +3,10 @@
     <div class="navigation-controls-left">
       <a class="navigation-content-name" href="/dashboard">{{ name }}</a>
     </div>
-    <div class="navigation-controls-right">  
+    <div class="navigation-controls-right">
       {{ caller() }}
       <div class="navigation-dropdown">
-        <input id="settings-dropdown" type="checkbox"/> 
+        <input id="settings-dropdown" type="checkbox"/>
         <label for="settings-dropdown" class="navigation-dropdown-button">
           <span class="material-symbols-rounded">settings</span>
         </label>
@@ -24,9 +24,9 @@
           </div>
           {% if username %}
             <div class="dropdown-field logout-button">
-                <form action="/logout?_method=DELETE" method="post">
-                    <button type="submit">Log out</button>
-                </form>
+              <form action="/logout?_method=DELETE" method="post">
+                <button type="submit">Log out</button>
+              </form>
             </div>
           {% endif %}
         </div>
@@ -69,7 +69,7 @@
       document.getElementById('dark-theme').classList.remove('active')
       document.getElementById('light-theme').classList.remove('active')
       document.getElementById('system-theme').classList.add('active')
-      document.body.removeAttribute("data-theme")
+      document.body.removeAttribute('data-theme')
     })
 
     computeTheme()

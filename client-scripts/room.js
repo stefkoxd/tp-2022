@@ -20,13 +20,16 @@ navigator.mediaDevices
   })
   .then(stream => {
     myVideoStream = stream
-    addVideoStream(myVideo, stream)
+    addVideoStream(myVideo, stream, 'me')
+
 
     peer.on('call', call => {
       call.answer(stream)
+
       const video = document.createElement('video')
       call.on('stream', userVideoStream => {
-        addVideoStream(video, userVideoStream)
+        const userId = getUserId(userVideoStream.id)
+        addVideoStream(video, userVideoStream, userId)
       })
     })
 
@@ -36,11 +39,18 @@ navigator.mediaDevices
     socket.emit('ready')
   })
 
-const connectToNewUser = (userId, stream) => {
+function getUserId(remoteId) {
+  return Object.entries(peer.connections)
+    .filter(([, [connection]]) => connection?.remoteStream.id === remoteId)
+    .map(([key]) => key)
+    .find(() => true)
+}
+
+function connectToNewUser(userId, stream) {
   const call = peer.call(userId, stream)
   const video = document.createElement('video')
   call.on('stream', userVideoStream => {
-    addVideoStream(video, userVideoStream)
+    addVideoStream(video, userVideoStream, userId)
   })
 }
 
@@ -48,11 +58,16 @@ peer.on('open', id => {
   socket.emit('join-room', ROOM_ID, id, user)
 })
 
-const addVideoStream = (video, stream) => {
+function addVideoStream(video, stream, userId = '') {
   video.srcObject = stream
   video.addEventListener('loadedmetadata', () => {
     video.play()
-    videoGrid.append(video)
+    if (!videoGrid.getElementsByClassName(userId).length) {
+      video.id = userId
+      video.classList.add(userId)
+      videoGrid.append(video)
+      handleLayout(videoGrid)
+    }
   })
 }
 
@@ -67,14 +82,12 @@ muteButton.addEventListener('click', () => {
   const enabled = myVideoStream.getAudioTracks()[0].enabled
   if (enabled) {
     myVideoStream.getAudioTracks()[0].enabled = false
-    html = '<i class="fas fa-microphone-slash"></i>'
     muteButton.classList.toggle('background__red')
-    muteButton.innerHTML = html
+    muteButton.classList.remove('active')
   } else {
     myVideoStream.getAudioTracks()[0].enabled = true
-    html = '<i class="fas fa-microphone"></i>'
     muteButton.classList.toggle('background__red')
-    muteButton.innerHTML = html
+    muteButton.classList.add('active')
   }
 })
 
@@ -82,14 +95,12 @@ stopVideo.addEventListener('click', () => {
   const enabled = myVideoStream.getVideoTracks()[0].enabled
   if (enabled) {
     myVideoStream.getVideoTracks()[0].enabled = false
-    html = '<i class="fas fa-video-slash"></i>'
     stopVideo.classList.toggle('background__red')
-    stopVideo.innerHTML = html
+    stopVideo.classList.remove('active')
   } else {
     myVideoStream.getVideoTracks()[0].enabled = true
-    html = '<i class="fas fa-video"></i>'
     stopVideo.classList.toggle('background__red')
-    stopVideo.innerHTML = html
+    stopVideo.classList.add('active')
   }
 })
 
@@ -113,14 +124,86 @@ text.addEventListener('keydown', e => {
 
 socket.on('createMessage', (message, userName) => {
   messages.innerHTML =
-    messages.innerHTML +
     `<div class="message">
         <b><i class="far fa-user-circle"></i> <span> ${userName}</span> </b>
         <span>${message}</span>
-    </div>`
+    </div>` + messages.innerHTML
 })
 
-// TODO: user disconnect
-// socket.on('user-disconnected', userId => {
-//   // remove video
-// })
+socket.on('user-disconnected', userId => {
+  document.getElementById(userId)?.remove()
+  handleLayout(videoGrid)
+})
+
+/**
+ *
+ * @param {number} elements
+ * @param {number} width
+ * @param {number} height
+ */
+function calculateLayout(elements, width, height) {
+  const portrait = width < height
+  const ratio = portrait ? width / height : height / width
+
+  const truncatedRatio = ratio > 0.4 || ratio < 0.6 ? 0.5 : ratio < 0.4 ? 1 - ratio : ratio
+
+  if (elements === 1) {
+    return {
+      rows: 1,
+      cols: 1
+    }
+  }
+
+  const x = elements * truncatedRatio
+  if (portrait) {
+    const cols = Math.floor(x)
+    const rows = Math.ceil(elements / cols)
+
+    return {
+      cols,
+      rows
+    }
+  }
+
+  const rows = Math.floor(x)
+  const cols = Math.ceil(elements / rows)
+
+  return {
+    cols,
+    rows
+  }
+
+
+}
+
+/**
+ * @param {HTMLElement} entry
+ */
+function handleLayout(entry) {
+  const height = entry.clientHeight
+  const width = entry.clientWidth
+  const elements = entry.children.length
+
+  const {rows, cols} = calculateLayout(elements, width, height)
+
+  const elementHeight = height / rows
+  const elementWidth = width / cols
+
+  entry.style.setProperty('--rows', rows.toString())
+  entry.style.setProperty('--cols', cols.toString())
+  entry.style.setProperty('--inner-width', `${elementWidth}px`)
+  entry.style.setProperty('--inner-height', `${elementHeight}px`)
+}
+
+let videoGridResizeObserver = new ResizeObserver(entries => {
+
+  for (const entry of entries) {
+    handleLayout(entry.target)
+  }
+})
+
+videoGridResizeObserver.observe(document.getElementById('video-grid'))
+
+videoGrid.addEventListener('change', (ev) => {
+  handleLayout(ev.target)
+})

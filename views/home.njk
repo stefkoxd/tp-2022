@@ -6,7 +6,7 @@
 
 {% block default %}
   <h1>Welcome {{ user.name }}</h1>
-    <form action="/logout?_method=DELETE" method="post">
+  <form action="/logout?_method=DELETE" method="post">
     <button type="submit">Log out</button>
   </form>
 {% endblock %}

@@ -1,58 +1,69 @@
+{% from "./layout/navigation.njk" import navigation %}
 {% extends "./layout/base.njk" %}
 
 {% block head %}
-    <title>{{ meetingName }}</title>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
-    <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
-    <script>
-      const ROOM_ID = '{{ roomId }}'
-    </script>
+  <title>{{ meetingName }}</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
+  <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+  <script>
+    const ROOM_ID = '{{ roomId }}'
+  </script>
 {% endblock %}
 
 {% block default %}
-  <div class="header">
-      <div class="logo">
-        <h3>{{ meetingName }}</h2>
+  {% call navigation(user.name, meetingName) -%}
+    {#    <div class="create-meeting" href="/dashboard/create"> #}
+
+    <div class="options">
+      <div id="stopVideo" class="options__button toggle active">
+        <span class="material-symbols-rounded on">
+          videocam
+        </span>
+        <span class="material-symbols-rounded off">
+          videocam_off
+        </span>
       </div>
-    </div>  
-    <div class="main">  
+      <div id="muteButton" class="options__button toggle active">
+        <span class="material-symbols-rounded on">
+          mic
+        </span>
+        <span class="material-symbols-rounded off">
+          mic_off
+        </span>
+      </div>
+      <div id="inviteButton" class="options__button">
+            <span class="material-symbols-rounded">
+            group_add
+            </span>
+      </div>
+    </div>
+  {%- endcall %}
+  <div class="main">
     <div class="main__left">
       <div class="videos__group">
         <div id="video-grid">
-
-        </div>
-      </div>
-      <div class="options">
-        <div class="options__left">
-          <div id="stopVideo" class="options__button">
-            <i class="fa fa-video-camera"></i>
-          </div>
-          <div id="muteButton" class="options__button">
-            <i class="fa fa-microphone"></i>
-          </div>
-        </div>
-        <div class="options__right">
-          <div id="inviteButton" class="options__button">
-            <i class="fas fa-user-plus"></i>
-          </div>
         </div>
       </div>
     </div>
     <div class="main__right">
       <div class="main__chat_window">
-          <div class="messages">
+        <div class="messages">
 
-          </div>
+        </div>
       </div>
       <div class="main__message_container">
-        <input id="chat_message" type="text" autocomplete="off" placeholder="Type message here...">
-        <div id="send" class="options__button">
-          <i class="fa fa-plus" aria-hidden="true"></i>
-        </div>
+        <input id="chat_message" type="text" autocomplete="off"
+               placeholder="Type message here...">
+        <label for="chat_message" id="send" class="options__button">
+            <span class="material-symbols-rounded">
+            send
+            </span>
+        </label>
       </div>
     </div>
   </div>
+
 
   <script src="/static/scripts.js"></script>
 {% endblock %}

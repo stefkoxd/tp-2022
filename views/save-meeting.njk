@@ -23,24 +23,21 @@
 
       <label for="date">Meeting date:</label>
       <input type="datetime-local" id="date" name="date"
-        
-       
-
         {% if meeting %}
           value="{{ meeting.date }}"
         {% endif %}
       >
 
       <script>
-        const date = Date.parse('{{meeting.date}}')
-        const offset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
-        const localDate = (new Date(date - offset)).toISOString().slice(0, -1);
-    
-        document.getElementById('date').setAttribute('value', localDate) 
+        const date = Date.parse('{{ meeting.date }}')
+        const offset = (new Date()).getTimezoneOffset() * 60000 //offset in milliseconds
+        const localDate = (new Date(date - offset)).toISOString().slice(0, -1)
+
+        document.getElementById('date').setAttribute('value', localDate)
         console.log(localDate)
       </script>
 
-      <input type="submit" value="Submit"> 
+      <input type="submit" value="Submit">
     </form>
   </main>
 {% endblock %}
