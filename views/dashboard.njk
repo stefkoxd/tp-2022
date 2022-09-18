@@ -10,7 +10,6 @@
 
 {% block default %}
   <div class="dashboard-page">
-    
 
     {% call navigation(user.name, 'Dashboard') -%}
       <a class="create-meeting" href="/dashboard/create">
@@ -57,14 +56,14 @@
     <template id="data">
       <ul id="meetings">
         {% for meeting in meetings %}
-          <li id={{meeting.id}}>
+          <li id={{ meeting.id }}>
             <div class="name">{{ meeting.name }}</div>
             <div class="date">{{ meeting.date }} </div>
             <a href='/room/{{ meeting.id }}'>Join</a>
           </li>
         {%- endfor %}
       </ul>
-      </template>
+    </template>
   {% endif %}
 {% endblock %}
 
@@ -190,10 +189,10 @@
     }
 
     /**
-    * update a field in the ui based on interaction.
-    * @param {Date} monday
-    * @param {Date} sunday
-    */
+     * update a field in the ui based on interaction.
+     * @param {Date} monday
+     * @param {Date} sunday
+     */
     function updateDateInHtml(monday, sunday) {
       const text = `${formatDate(monday)} - ${formatDate(sunday)}`
       const textNode = document.createTextNode(text)
@@ -214,7 +213,7 @@
       are you sure you wan't to proceed?
 
 
-      The Meeting link is: 
+      The Meeting link is:
       ${meetinglink}`
         .split('\n')
         .map(s => s.trim())
@@ -240,11 +239,11 @@
     }
 
     /**
-    * Get the last day of the current week (sunday)
-    *
-    * @param {Date} date
-    * @returns date of monday
-    */
+     * Get the last day of the current week (sunday)
+     *
+     * @param {Date} date
+     * @returns date of monday
+     */
     function getFirstDayOfWeek(date) {
       const newDate = new Date(date)
       const day = newDate.getDay() || 7
@@ -255,11 +254,11 @@
     }
 
     /**
-    * Get the first day of the current week (monday)
-    *
-    * @param {Date} date
-    * @returns date of sunday
-    */
+     * Get the first day of the current week (monday)
+     *
+     * @param {Date} date
+     * @returns date of sunday
+     */
     function getLastDayOfWeek(date) {
       const newDate = new Date(date)
       const day = newDate.getDay() || 7
@@ -270,19 +269,19 @@
     }
 
     /**
-    * update the date property.
-    *
-    * @param {Date} newDate
-    */
+     * update the date property.
+     *
+     * @param {Date} newDate
+     */
     function updateDate(newDate) {
       date = newDate
     }
 
     /**
-    * update the weekday params.
-    *
-    * @param {Date} date
-    */
+     * update the weekday params.
+     *
+     * @param {Date} date
+     */
     function updateWeekDays(date) {
       monday = getFirstDayOfWeek(date)
       sunday = getLastDayOfWeek(date)
@@ -290,21 +289,21 @@
     }
 
     /**
-    * create new array with item from 0 to n
-    *
-    * @param {number} n
-    * @returns a range from 0 to n
-    */
+     * create new array with item from 0 to n
+     *
+     * @param {number} n
+     * @returns a range from 0 to n
+     */
     function rangeTo(n) {
       return [...Array(n).keys()]
     }
 
     /**
-    * format a date.
-    *
-    * @param {Date} date
-    * @returns formatted date
-    */
+     * format a date.
+     *
+     * @param {Date} date
+     * @returns formatted date
+     */
     function formatDate(date) {
       const day = date.getDate()
       const month = monthNames[date.getMonth()]
@@ -313,10 +312,10 @@
     }
 
     /**
-    *
-    * @param {Date} date
-    * @returns
-    */
+     *
+     * @param {Date} date
+     * @returns
+     */
     function formatDateTime(date) {
       const minutes = date.getMinutes().toString().padStart(2, '0')
       const hours = date.getHours().toString().padStart(2, '0')
@@ -324,11 +323,11 @@
     }
 
     /**
-    *
-    * @param {Date} date
-    * @param {string} hour
-    * @returns
-    */
+     *
+     * @param {Date} date
+     * @param {string} hour
+     * @returns
+     */
     function formatIsoDate(date, hour) {
       const year = date.getFullYear()
       const month = date.getMonth().toString().padStart(2, '0')
@@ -338,11 +337,11 @@
     }
 
     /**
-    * Increment the number of days by the amount provided.
-    *
-    * @param {Date} date
-    * @param {number} days
-    */
+     * Increment the number of days by the amount provided.
+     *
+     * @param {Date} date
+     * @param {number} days
+     */
     function addDays(date, days) {
       const newDate = new Date(date)
       newDate.setDate(date.getDate() + days)
@@ -351,11 +350,11 @@
     }
 
     /**
-    * Decrement the number of days by the amount provided.
-    *
-    * @param {Date} date
-    * @param {number} days
-    */
+     * Decrement the number of days by the amount provided.
+     *
+     * @param {Date} date
+     * @param {number} days
+     */
     function subtractDays(date, days) {
       const newDate = new Date(date)
 
@@ -364,12 +363,12 @@
     }
 
     /**
-    * create an html element of type
-    *
-    * @param {string} id the id of the html element
-    * @param {string} type the type of element
-    * @returns
-    */
+     * create an html element of type
+     *
+     * @param {string} id the id of the html element
+     * @param {string} type the type of element
+     * @returns
+     */
     function createElement(id, type = 'div') {
       const element = document.createElement(type)
 
@@ -379,22 +378,22 @@
     }
 
     /**
-    *
-    * @param {Date} date
-    * @param {string} hour
-    * @returns
-    */
+     *
+     * @param {Date} date
+     * @param {string} hour
+     * @returns
+     */
     function createDateElement(date, hour, type = 'div') {
       const id = formatIsoDate(date, hour)
       return createElement(id, type)
     }
 
     /**
-    *
-    * @param {Date} date
-    * @param {string} hour
-    * @returns
-    */
+     *
+     * @param {Date} date
+     * @param {string} hour
+     * @returns
+     */
     function createTimeElement(hour, type = 'div') {
       const id = `${hour.padStart(2, '0')}:00`
       const element = createElement(id, type)
@@ -404,10 +403,10 @@
     }
 
     /**
-    * Create a link pointing to the meeting room.
-    * @param {string} id
-    * @param
-    */
+     * Create a link pointing to the meeting room.
+     * @param {string} id
+     * @param
+     */
     function createLink(id, href, element) {
       const link = createElement(id, 'a')
       link.href = href
