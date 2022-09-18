@@ -22,7 +22,6 @@ navigator.mediaDevices
     myVideoStream = stream
     addVideoStream(myVideo, stream, 'me')
 
-
     peer.on('call', call => {
       call.answer(stream)
 
@@ -125,7 +124,10 @@ text.addEventListener('keydown', e => {
 socket.on('createMessage', (message, userName) => {
   messages.innerHTML =
     `<div class="message">
-        <b><i class="far fa-user-circle"></i> <span> ${userName}</span> </b>
+        <b>
+          <span class="material-symbols-rounded icon">account_circle</span>
+          <span>${userName}</span>
+        </b>
         <span>${message}</span>
     </div>` + messages.innerHTML
 })
@@ -172,8 +174,6 @@ function calculateLayout(elements, width, height) {
     cols,
     rows
   }
-
-
 }
 
 /**
@@ -184,7 +184,7 @@ function handleLayout(entry) {
   const width = entry.clientWidth
   const elements = entry.children.length
 
-  const {rows, cols} = calculateLayout(elements, width, height)
+  const { rows, cols } = calculateLayout(elements, width, height)
 
   const elementHeight = height / rows
   const elementWidth = width / cols
@@ -196,7 +196,6 @@ function handleLayout(entry) {
 }
 
 let videoGridResizeObserver = new ResizeObserver(entries => {
-
   for (const entry of entries) {
     handleLayout(entry.target)
   }
@@ -204,6 +203,6 @@ let videoGridResizeObserver = new ResizeObserver(entries => {
 
 videoGridResizeObserver.observe(document.getElementById('video-grid'))
 
-videoGrid.addEventListener('change', (ev) => {
+videoGrid.addEventListener('change', ev => {
   handleLayout(ev.target)
 })

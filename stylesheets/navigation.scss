@@ -37,7 +37,6 @@
     }
 
     &-button {
-      height: fit-content;
       display: flex;
       user-select: none;
       height: 100%;
@@ -94,7 +93,7 @@
           background-color: var(--background-color-4);
           border-radius: var(--corner-roundness);
           color: var(--text-color);
-          border: 0px solid transparent;
+          border: 0 solid transparent;
           display: flex;
           justify-content: center;
           align-items: center;

@@ -4,7 +4,6 @@
 {% block head %}
   <title>{{ meetingName }}</title>
   <script src="/socket.io/socket.io.js"></script>
-  <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
   <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
   <script>
     const ROOM_ID = '{{ roomId }}'
@@ -13,8 +12,6 @@
 
 {% block default %}
   {% call navigation(user.name, meetingName) -%}
-    {#    <div class="create-meeting" href="/dashboard/create"> #}
-
     <div class="options">
       <div id="stopVideo" class="options__button toggle active">
         <span class="material-symbols-rounded on">
