@@ -33,15 +33,6 @@
 
 .videos__group {
   height: 100%;
-  //width: 100%;
-  //height: 100%;
-
-  //grid-auto-flow: column;
-  //display: flex;
-  //grid-template-rows: repeat(1, 1fr);
-  //justify-content: center;
-  //align-items: center;
-  //padding: 1rem;
   background-color: var(--background-color-0);
 }
 
@@ -64,15 +55,7 @@
 video {
   height: 100%;
   width: 100%;
-  //width: var(--inner-width);
-  //height: var(--inner-height);
-  //height: 100%;
-  //max-height: 100%;
-  //max-width: 100%;
-  //height: 300px;
-  //width: 400px;
   border-radius: var(--corner-roundness);
-  //margin: 0.5rem;
   object-fit: cover;
   transform: rotateY(180deg);
 }
@@ -236,12 +219,13 @@ video {
   display: flex;
   align-items: center;
   text-transform: capitalize;
+  gap: 0.25rem;
   padding: 0 1rem;
 }
 
-.message > b > i {
-  margin-right: 0.7rem;
+.message > b > .icon {
   font-size: 1rem;
+  user-select: none;
 }
 
 .message > span {

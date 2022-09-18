@@ -124,7 +124,10 @@ text.addEventListener('keydown', e => {
 socket.on('createMessage', (message, userName) => {
   messages.innerHTML =
     `<div class="message">
-        <b><i class="far fa-user-circle"></i> <span> ${userName}</span> </b>
+        <b>
+          <span class="material-symbols-rounded icon">account_circle</span>
+          <span>${userName}</span>
+        </b>
         <span>${message}</span>
     </div>` + messages.innerHTML
 })
