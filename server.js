@@ -4,37 +4,21 @@ const server = require('http').Server(app)
 const nunjucks = require('nunjucks')
 const bodyParser = require('body-parser')
 const { collect: ctlCollector, router } = require('./register-routes')
-const mongoose = require('mongoose')
 const passport = require('passport')
 const flash = require('express-flash')
 const session = require('express-session')
 const methodOverride = require('method-override')
 const Message = require('./models/message')
+const { databaseConnection } = require('./db-connection')
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.ENVIRONMENT !== 'production') {
   require('dotenv').config()
 }
 
+databaseConnection()
+
 const initPassport = require('./passport-config')
 initPassport(passport)
-
-mongoose
-  .connect('mongodb://localhost:27017/tpvc-db?authSource=admin&w=1', {
-    auth: {
-      authSource: 'admin',
-    },
-    user: 'root',
-    pass: 'password',
-  })
-  .then(
-    () => {
-      // TODO: Add proper logging
-      // console.log('connected to db')
-    },
-    err => {
-      console.error(err)
-    }
-  )
 
 nunjucks.configure('views', {
   autoescape: true,
