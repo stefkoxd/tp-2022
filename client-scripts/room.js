@@ -22,7 +22,6 @@ navigator.mediaDevices
     myVideoStream = stream
     addVideoStream(myVideo, stream, 'me')
 
-
     peer.on('call', call => {
       call.answer(stream)
 
@@ -41,7 +40,7 @@ navigator.mediaDevices
 
 function getUserId(remoteId) {
   return Object.entries(peer.connections)
-    .filter(([, [connection]]) => connection?.remoteStream.id === remoteId)
+    .filter(([, [connection]]) => connection?.remoteStream?.id === remoteId)
     .map(([key]) => key)
     .find(() => true)
 }
@@ -172,8 +171,6 @@ function calculateLayout(elements, width, height) {
     cols,
     rows
   }
-
-
 }
 
 /**
@@ -184,7 +181,7 @@ function handleLayout(entry) {
   const width = entry.clientWidth
   const elements = entry.children.length
 
-  const {rows, cols} = calculateLayout(elements, width, height)
+  const { rows, cols } = calculateLayout(elements, width, height)
 
   const elementHeight = height / rows
   const elementWidth = width / cols
@@ -196,7 +193,6 @@ function handleLayout(entry) {
 }
 
 let videoGridResizeObserver = new ResizeObserver(entries => {
-
   for (const entry of entries) {
     handleLayout(entry.target)
   }
@@ -204,6 +200,6 @@ let videoGridResizeObserver = new ResizeObserver(entries => {
 
 videoGridResizeObserver.observe(document.getElementById('video-grid'))
 
-videoGrid.addEventListener('change', (ev) => {
+videoGrid.addEventListener('change', ev => {
   handleLayout(ev.target)
 })
