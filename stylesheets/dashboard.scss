@@ -15,8 +15,6 @@
     justify-content: center;
     align-items: center;
     padding: 2rem 1rem;
-    // height: 400px;
-
     box-sizing: border-box;
 
     &-calendar {
@@ -67,7 +65,7 @@
           }
 
           & > *:not(.clock) {
-            font-size: 0rem;
+            font-size: 0;
             overflow: hidden;
             text-overflow: ellipsis;
           }
@@ -240,7 +238,6 @@
     width: 100%;
     box-sizing: border-box;
     padding: 0.25rem 0.5rem;
-    width: 100%;
     background-color: var(--accent-color);
     border: 0 solid transparent;
     border-bottom-left-radius: calc(var(--corner-roundness) / 2);
@@ -332,7 +329,6 @@
       width: 100%;
       box-sizing: border-box;
       padding: 0.25rem 0.5rem;
-      width: 100%;
       background-color: var(--accent-color);
       border: 0 solid transparent;
       border-bottom-left-radius: calc(var(--corner-roundness) / 2);
@@ -347,7 +343,7 @@
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  border: 0px solid transparent;
+  border: 0 solid transparent;
   border-radius: var(--corner-roundness);
   background-color: var(--accent-color);
   color: var(--white);

@@ -6,7 +6,7 @@ const monthNames = [
   'May',
   'June',
   'July',
-  'August', 200
+  'August',
   'September',
   'October',
   'November',
