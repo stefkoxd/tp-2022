@@ -22,14 +22,13 @@ const databaseConnection = () => {
           }
         )
     } else {
+      const databaseUser = process.env.DATABASE_USER
+      const databasePassword = process.env.DATABASE_PASSWORD
+
       mongoose
-        .connect('mongodb://localhost:27017/tpvc-db?authSource=admin&w=1', {
-          auth: {
-            authSource: 'admin',
-          },
-          user: 'root',
-          pass: 'password',
-        })
+        .connect(
+          `mongodb+srv://${databaseUser}:${databasePassword}@cluster0.4v4ql.mongodb.net/tpvc-db?retryWrites=true&w=majority`
+        )
         .then(
           () => {
             console.log('connected to remote db')

@@ -15,10 +15,10 @@ if (process.env.ENVIRONMENT !== 'production') {
   require('dotenv').config()
 }
 
+databaseConnection()
+
 const initPassport = require('./passport-config')
 initPassport(passport)
-
-databaseConnection()
 
 nunjucks.configure('views', {
   autoescape: true,
