@@ -4,7 +4,8 @@
   "description": "A virtual classroom system built using Node.js, socket.io and WebRTC",
   "main": "index.js",
   "scripts": {
-    "start": "webpack --watch --mode=development & nodemon server.js",
+    "start": "node server.js",
+    "start:dev": "webpack --watch --mode=development & nodemon server.js",
     "build": "webpack --mode=production",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
