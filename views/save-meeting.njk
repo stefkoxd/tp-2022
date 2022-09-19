@@ -6,28 +6,39 @@
 
 {% block default %}
   <main class="meeting-page">
-    <h1>Meeting</h1>
-    <form method="post"
+    <form class="save-meeting-form" method="post"
       {% if meeting %}
         action="/meeting/save/{{ meeting.id }}"
       {% else %}
         action="/meeting/save"
       {% endif %}
     >
-      <label for="name">Meeting name:</label>
-      <input type="text" id="name" name="name"
+    <h1 class="meeting-title">Meeting</h1>
+    <div class="save-meeting-form-group">
+      <input type="text" class="save-meeting-form-group-input" id="name" name="name" placeholder="Meeting name"
         {% if meeting %}
-          value="{{ meeting.name }}"
+        value="{{ meeting.name }}"
         {% endif %}
       >
+      <label class="save-meeting-form-group-label" for="name">
+        <span class="material-symbols-rounded">
+          meeting_room
+        </span>
+      </label>
+    </div>
 
-      <label for="date">Meeting date:</label>
-      <input type="datetime-local" id="date" name="date"
+    <div class="save-meeting-form-group">
+      <input type="datetime-local" class="save-meeting-form-group-input" id="date" name="date"
         {% if meeting %}
           value="{{ meeting.date }}"
         {% endif %}
       >
-
+      <label class="save-meeting-form-group-label" for="date">
+        <span class="material-symbols-rounded">
+        schedule
+        </span>
+      </label>
+    </div>
       <script>
         const date = Date.parse('{{ meeting.date }}')
         const offset = (new Date()).getTimezoneOffset() * 60000 //offset in milliseconds
@@ -37,7 +48,9 @@
         console.log(localDate)
       </script>
 
-      <input type="submit" value="Submit">
+      <button class="button" type="submit">
+        Create
+      </button>
     </form>
   </main>
 {% endblock %}
