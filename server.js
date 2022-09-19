@@ -88,4 +88,4 @@ io.on('connection', socket => {
 app.use('/static', express.static('public'))
 app.use('', router)
 
-server.listen(8080)
+server.listen(process.env.PORT || 8080)
