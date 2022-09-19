@@ -6,21 +6,46 @@
 
 {% block default %}
   <main class="register-page">
-    <h1>Register page</h1>
-    <form method="post" action="/register">
-      <label for="name">Enter your name:</label>
-      <input type="text" id="name" name="name">
+    <form method="post" action="/register" class="register-form">
+    <h1 class="register-login-title">Register</h1>
+    <div class="register-form-group">
+      <input class="register-form-group-input" type="text" id="name" placeholder="Name">
+      <label class="register-form-group-label" for="name">
+        <span class="material-symbols-rounded">
+        person_filled
+        </span>
+      </label>
+    </div>
 
-      <label for="surname">Enter your surname:</label>
-      <input type="text" id="surname" name="surname">
+    <div class="register-form-group">
+      <input class="register-form-group-input" type="text" id="surname" placeholder="Surname">
+      <label class="register-form-group-label" for="surname">
+            <span class="material-symbols-rounded">
+              person_filled
+            </span>
+      </label>
+    </div>
 
-      <label for="email">Enter your email:</label>
-      <input type="text" id="email" name="email">
+    <div class="register-form-group">
+      <input class="register-form-group-input" type="text" id="email" name="email" placeholder="Email">
+      <label class="register-form-group-label" for="email">
+        <span class="material-symbols-rounded">
+          mail
+        </span>
+      </label>
+    </div>
 
-      <label for="password">Enter your password:</label>
-      <input type="password" id="password" name="password">
-
-      <input type="submit" value="Submit">
+    <div class="register-form-group">
+      <input class="register-form-group-input" type="password" id="password" placeholder="Password">
+      <label class="register-form-group-label" for="password">
+        <span class="material-symbols-rounded">
+         lock
+        </span>
+      </label>
+    </div>
+      <button class="button" type="submit">
+         Register
+      </button>
     </form>
   </main>
 {% endblock %}
