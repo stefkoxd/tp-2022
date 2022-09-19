@@ -3,6 +3,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const autoprefixer = require('autoprefixer')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const isDev = process.env.NODE_ENV !== 'production'
+const webpack = require('webpack')
 
 module.exports = {
   context: __dirname,
@@ -71,6 +72,9 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
+    }),
+    new webpack.DefinePlugin({
+      'process.env.ENVIRONMENT': JSON.stringify(process.env.ENVIRONMENT),
     }),
   ],
 }
