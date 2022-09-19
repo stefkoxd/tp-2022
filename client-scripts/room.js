@@ -10,7 +10,7 @@ let peer
 
 if (env === 'production') {
   peer = new Peer(undefined, {
-    host: 'https://tp-peerjs.herokuapp.com',
+    host: 'tp-peerjs.herokuapp.com',
     secure: true,
     port: 443,
   })
