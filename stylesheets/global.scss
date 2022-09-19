@@ -34,3 +34,6 @@ body {
     @include v.dark-properties();
   }
 }
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  display: none;
+}
