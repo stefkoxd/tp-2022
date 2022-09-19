@@ -2,14 +2,25 @@
 const socket = io('/')
 const videoGrid = document.getElementById('video-grid')
 const myVideo = document.createElement('video')
+const env = process.env.ENVIRONMENT
 myVideo.muted = true
 
 const user = prompt('Enter your name')
-const peer = new Peer(undefined, {
-  path: '/peerjs',
-  host: 'localhost',
-  port: '9000',
-})
+let peer
+
+if (env === 'production') {
+  peer = new Peer(undefined, {
+    host: 'https://tp-peerjs.herokuapp.com',
+    secure: true,
+    port: 443,
+  })
+} else {
+  peer = new Peer(undefined, {
+    path: '/peerjs',
+    host: 'localhost',
+    port: '9000',
+  })
+}
 
 // eslint-disable-next-line no-unused-vars
 let myVideoStream
@@ -152,7 +163,7 @@ function calculateLayout(elements, width, height) {
   if (elements === 1) {
     return {
       rows: 1,
-      cols: 1
+      cols: 1,
     }
   }
 
@@ -163,7 +174,7 @@ function calculateLayout(elements, width, height) {
 
     return {
       cols,
-      rows
+      rows,
     }
   }
 
@@ -172,7 +183,7 @@ function calculateLayout(elements, width, height) {
 
   return {
     cols,
-    rows
+    rows,
   }
 }
 
