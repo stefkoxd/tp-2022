@@ -34,6 +34,16 @@ body {
     @include v.dark-properties();
   }
 }
-input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+
+input[type='datetime-local']::-webkit-calendar-picker-indicator {
   display: none;
+}
+
+input:-webkit-autofill {
+  -webkit-text-fill-color: var(--black);
+}
+
+
+input:-webkit-autofill ~ label{
+  -webkit-text-fill-color: var(--black);
 }

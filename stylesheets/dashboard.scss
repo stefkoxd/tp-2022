@@ -124,7 +124,7 @@
             padding-bottom: var(--padding-y-row);
             padding-right: var(--padding-x-row);
             padding-left: var(--padding-x-row);
-            overflow-y: scroll;
+            overflow-y: auto;
 
 
             &:first-child {
